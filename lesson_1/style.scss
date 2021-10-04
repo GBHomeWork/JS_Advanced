@@ -1,0 +1,50 @@
+body {
+    font-family: sans-serif;
+}
+
+header {
+    margin-bottom: 10px;
+}
+
+.btn-cart {
+    font-size: 22px;
+    font-weight: bold;
+}
+
+.products {
+    display: flex;
+}
+
+.product-item {
+    border: 1px solid black;
+    margin-right: 10px;
+    margin-bottom: 10px;
+    &:last-child {
+        margin-right: 0;
+    }
+    padding: 10px;
+}
+
+img {
+    width: 200px;
+    height: 130px;
+    padding-bottom: 10px;
+}
+
+h3, p {
+    margin: 0;
+}
+
+h3 {
+    padding-bottom: 5px;
+}
+
+p {
+    padding-bottom: 10px;
+}
+
+.buy-btn {
+    display: block;
+    font-weight: bold;
+    margin: auto;
+}
