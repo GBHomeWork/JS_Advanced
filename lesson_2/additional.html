@@ -1,0 +1,150 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Lesson 2 - additional</title>
+    <style>
+        h2 {
+            text-align: center;
+        }
+
+        .menu {
+            display: flex;
+            flex-wrap: wrap;
+        }
+
+        .hamburger {
+            width: 225px;
+            border: 1px solid black;
+            text-align: center;
+            padding: 5px;
+            margin: 10px;
+        }
+
+        button {
+            margin-bottom: 15px;
+        }
+    </style>
+</head>
+
+<body>
+    <div class='hamburgersMenu'>
+        <div class='menu'></div>
+    </div>
+
+    <script>
+        'use strict';
+
+        class Hamburger {
+            constructor(number, size, filling, flavoring, mayonnaise) {
+                this.number = number;
+                this.size = size;
+                this.filling = filling;
+                this.flavoring = flavoring;
+                this.mayonnaise = mayonnaise;
+                this.price = this.countPrice();
+                this.calories = this.countCalories();
+            }
+
+            countPrice() {
+                let price = 0;
+
+                if (this.size == 'small') {
+                    price += 50;
+                } else if (this.size == 'big') {
+                    price += 100;
+                }
+
+                if (this.filling == 'cheese') {
+                    price += 10;
+                } else if (this.filling == 'salad') {
+                    price += 20;
+                } else if (this.filling == 'potato') {
+                    price += 15;
+                }
+
+                if (this.flavoring == 'yes') {
+                    price += 15;
+                }
+
+                if (this.mayonnaise == 'yes') {
+                    price += 20;
+                }
+
+                return price;
+            }
+
+            countCalories() {
+                let calories = 0;
+
+                if (this.size == 'small') {
+                    calories += 20;
+                } else if (this.size == 'big') {
+                    calories += 40;
+                }
+
+                if (this.filling == 'cheese') {
+                    calories += 20;
+                } else if (this.filling == 'salad') {
+                    calories += 5;
+                } else if (this.filling == 'potato') {
+                    calories += 10;
+                }
+
+                if (this.mayonnaise == 'yes') {
+                    calories += 5;
+                }
+
+                return calories;
+            }
+
+            renderHamburger() {
+                return `<div class='hamburger'>
+                            <h3>Hamburger # ${this.number}</h3>
+                            <p>${this.size.charAt(0).toUpperCase() + this.size.slice(1)} hamburger with ${this.filling}.</p>
+                            <p>Flavoring - ${this.flavoring}, mayonnaise - ${this.mayonnaise}.</p>
+                            <h4>Price - ${this.price}, calories - ${this.calories}.</h4>
+                            <button>Buy</button>
+                        </div>`;
+            }
+        }
+
+        class Menu {
+            constructor(n) {
+                this.sizes = ['small', 'big'];
+                this.fillings = ['cheese', 'salad', 'potato'];
+                this.flavoring = ['yes', 'no'];
+                this.mayonnaise = ['yes', 'no'];
+                this.list = [];
+                this.createMenu(n);
+                this.renderMenu();
+            }
+
+            createMenu(n) {
+                for (let i = 0; i < n; i++) {
+                    this.list.push(new Hamburger(i + 1,
+                        this.sizes[Math.floor(Math.random() * (1 - 0 + 1)) + 0],
+                        this.fillings[Math.floor(Math.random() * (2 - 0 + 1)) + 0],
+                        this.flavoring[Math.floor(Math.random() * (1 - 0 + 1)) + 0],
+                        this.mayonnaise[Math.floor(Math.random() * (1 - 0 + 1)) + 0])
+                    );
+                }
+            }
+
+            renderMenu() {
+                let header = document.querySelector('.hamburgersMenu');
+                let menuHeader = '<h2>Today in Menu!</h2>'
+                header.insertAdjacentHTML('afterbegin', menuHeader);
+                let container = document.querySelector('.menu');
+                this.list.forEach(item => container.insertAdjacentHTML('beforeend', item.renderHamburger()));
+            }
+        }
+
+        let menu = new Menu(10);
+    </script>
+</body>
+
+</html>
