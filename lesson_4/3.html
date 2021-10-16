@@ -1,0 +1,124 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>lesson 4 - task 3</title>
+    <style>
+        body {
+            font-family: sans-serif;
+        }
+
+        input {
+            width: 200px;
+        }
+
+        .comment {
+            height: 100px;
+            width: 200px;
+        }
+
+        .send {
+            font-size: 16px;
+        }
+
+        .hide {
+            display: none;
+        }
+
+        .error {
+            color: red;
+        }
+
+        .red {
+            border-color: red;
+            outline-color: red;
+        }
+    </style>
+</head>
+
+<body>
+    <form action="#">
+        Имя <br><input type='text' class='name'>
+        <br><br>
+        Телефон <br><input type='tel' class='phone'>
+        <br><br>
+        E-mail <br><input type='email' class='email'>
+        <br><br>
+        Комментарий <br><textarea class='comment'></textarea>
+        <br><br>
+        <div class='error hide'></div>
+        <br>
+        <button class='send'>Отправить</button>
+    </form>
+
+    <script>
+        'use strict';
+
+        class Form {
+            constructor() {
+                this.name = {
+                    label: 'Имя',
+                    el: document.querySelector('.name'),
+                    regExp: /^[A-ZА-ЯёЁ]+[a-zA-Zа-яА-ЯёЁ+]/
+                };
+                this.phone = {
+                    label: 'Телефон',
+                    el: document.querySelector('.phone'),
+                    regExp: /\+7\(\d{3}\)\d{3}-\d{2}-\d{2}/
+                };
+                this.email = {
+                    label: 'E-mail',
+                    el: document.querySelector('.email'),
+                    regExp: /^[a-z.-]+@mail\.ru/
+                };
+                this.error = document.querySelector('.error');
+                this.send = document.querySelector('.send');
+                this.send.addEventListener('click', () => { this.check(); });
+            }
+
+            check() {
+                this.error.innerHTML = '';
+                this.checkName();
+                this.checkPhone();
+                this.checkEmail();
+            }
+
+            checkName() {
+                if (!this.name.el.value.match(this.name.regExp)) {
+                    this.name.el.classList.add('red');
+                    this.error.innerHTML += `<p>Вы ввели некорректное значение в поле ${this.name.label}.</p>`;
+                    this.error.classList.remove('hide');
+                } else {
+                    this.name.el.classList.remove('red');
+                }
+            }
+
+            checkPhone() {
+                if (!this.phone.el.value.match(this.phone.regExp)) {
+                    this.phone.el.classList.add('red');
+                    this.error.innerHTML += `<p>Вы ввели некорректное значение в поле ${this.phone.label}.</p>`;
+                    this.error.classList.remove('hide');
+                } else {
+                    this.phone.el.classList.remove('red');
+                }
+            }
+
+            checkEmail() {
+                if (!this.email.el.value.match(this.email.regExp)) {
+                    this.email.el.classList.add('red');
+                    this.error.innerHTML += `<p>Вы ввели некорректное значение в поле ${this.email.label}.</p>`;
+                    this.error.classList.remove('hide');
+                } else {
+                    this.email.el.classList.remove('red');
+                }
+            }
+        }
+
+        let form = new Form();
+    </script>
+</body>
+
+</html>
