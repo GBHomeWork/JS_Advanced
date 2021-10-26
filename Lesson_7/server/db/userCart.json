@@ -1,0 +1,39 @@
+{
+    "contents": [
+        {
+            "quantity": 8,
+            "id_product": 1,
+            "product_name": "Клавиатура",
+            "price": 1600,
+            "img": "https://i.postimg.cc/v8gbwL3J/1.jpg"
+        },
+        {
+            "quantity": 6,
+            "id_product": 2,
+            "product_name": "Геймпад",
+            "price": 3000,
+            "img": "https://i.postimg.cc/zDs5zbQV/2.jpg"
+        },
+        {
+            "quantity": 8,
+            "id_product": 3,
+            "product_name": "Ноутбук",
+            "price": 45600,
+            "img": "https://i.postimg.cc/SNc4JQ0V/3.jpg"
+        },
+        {
+            "quantity": 10,
+            "id_product": 4,
+            "product_name": "Мышка",
+            "price": 1000,
+            "img": "https://i.postimg.cc/qv0Tnf4r/4.jpg"
+        },
+        {
+            "quantity": 1,
+            "id_product": 3,
+            "product_name": "Ноутбук",
+            "price": 45600,
+            "img": "https://i.postimg.cc/SNc4JQ0V/3.jpg"
+        }
+    ]
+}
